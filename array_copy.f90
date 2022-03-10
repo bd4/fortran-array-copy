@@ -42,12 +42,10 @@ program test
     implicit none
 
     complex, dimension(:), allocatable, target :: alloc
-    complex, dimension(:), pointer, contiguous :: stor
     complex, dimension(:,:,:,:), pointer, contiguous :: p
 
     allocate(alloc(10240))
-    stor => alloc
-    p(0:15,0:15,1:2,1:20) => stor
+    p(0:15,0:15,1:2,1:20) => alloc
 
     call printAddress("p        ", p)
     call printAddress("p slice 1", p(:,:,:,1))
